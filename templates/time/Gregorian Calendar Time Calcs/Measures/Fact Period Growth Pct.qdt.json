@@ -33,7 +33,7 @@
             },
             "objectType": "measure",
             "name": "__PMeasureName",
-            "expression": "=\nDIVIDE (\n    [Sales YOY],\n    [Sales PY]\n)",
+            "expression": "=\nDIVIDE (\n    [__PeriodGrowth],\n    [__PriorPeriod]\n)",
             "description": "",
             "folder": "",
             "hidden": "false"

@@ -15,12 +15,12 @@
             "parameterKey": "__CurrentPeriod",
             "displayName": "CurrentPeriod",
             "selectionKind": "measure",
-            "defaultValue": "[Sales Amount]"
+            "defaultValue": "Sales Amount"
         },
         {
             "parameterKey": "__PreviousPeriod",
             "displayName": "PreviousPeriod",
-            "defaultValue": "[Sales PY]",
+            "defaultValue": "Sales PY",
             "selectionKind": "measure"
         }
     ],
@@ -33,7 +33,7 @@
             },
             "objectType": "measure",
             "name": "__PMeasureName",
-            "expression": "=\nVAR ValueCurrentPeriod = __CurrentPeriod\nVAR ValuePreviousPeriod = __PreviousPeriod\nVAR Result =\n    IF (\n        NOT ISBLANK ( ValueCurrentPeriod ) && NOT ISBLANK ( ValuePreviousPeriod ),\n        ValueCurrentPeriod - ValuePreviousPeriod\n    )\nRETURN\n    Result",
+            "expression": "=\nVAR ValueCurrentPeriod = [__CurrentPeriod]\nVAR ValuePreviousPeriod = [__PreviousPeriod]\nVAR Result =\n    IF (\n        NOT ISBLANK ( ValueCurrentPeriod ) && NOT ISBLANK ( ValuePreviousPeriod ),\n        ValueCurrentPeriod - ValuePreviousPeriod\n    )\nRETURN\n    Result",
             "description": "",
             "folder": "",
             "hidden": "false"
