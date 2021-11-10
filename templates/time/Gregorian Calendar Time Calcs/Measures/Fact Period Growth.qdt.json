@@ -1,5 +1,5 @@
 {
-    "templateName": "Sales Period Growth Pct",
+    "templateName": "Fact Period Growth",
     "parameters": [
         {
             "parameterKey": "__PMeasureName",
@@ -12,14 +12,14 @@
             "selectionKind": "userInput"
         },
         {
-            "parameterKey": "__PeriodGrowth",
-            "displayName": "PeriodGrowth",
+            "parameterKey": "__CurrentPeriod",
+            "displayName": "CurrentPeriod",
             "selectionKind": "measure",
-            "defaultValue": "[Sales YOY]"
+            "defaultValue": "[Sales Amount]"
         },
         {
-            "parameterKey": "__PriorPeriod",
-            "displayName": "PriorPeriod",
+            "parameterKey": "__PreviousPeriod",
+            "displayName": "PreviousPeriod",
             "defaultValue": "[Sales PY]",
             "selectionKind": "measure"
         }
@@ -27,13 +27,13 @@
     "encoding": [
         {
             "format": {
-                "formatString": "percentage",
+                "formatString": "currency",
                 "UseParenthesisForNegativeValues": "true",
                 "UseThousandSeparator": "true"
             },
             "objectType": "measure",
             "name": "__PMeasureName",
-            "expression": "=\nDIVIDE (\n    [Sales YOY],\n    [Sales PY]\n)",
+            "expression": "=\nVAR ValueCurrentPeriod = __CurrentPeriod\nVAR ValuePreviousPeriod = __PreviousPeriod\nVAR Result =\n    IF (\n        NOT ISBLANK ( ValueCurrentPeriod ) && NOT ISBLANK ( ValuePreviousPeriod ),\n        ValueCurrentPeriod - ValuePreviousPeriod\n    )\nRETURN\n    Result",
             "description": "",
             "folder": "",
             "hidden": "false"
@@ -50,10 +50,10 @@
         null
     ],
     "supportURLs": [
-        "https://www.daxpatterns.com/standard-time-related-calculations/"
+        "https://www.daxpatterns.com/standard-time-related-calculations/#code17"
     ],
-    "description": "Used to create period growth measures, i.e. YOY %, QOQ %, MOM %",
+    "description": "Used to create period growth measures, i.e. YOY, QOQ, MOM",
     "buildVersion": "v1.0.0",
-    "uniqueId": "15b307e6-2979-4e6b-97f2-9b63811a6c51",
+    "uniqueId": "7edfff31-e28d-4336-ad6a-ea009b9a5be0",
     "schemaVersion": "https://github.com/PowerBI-tips/DAX-Templates/blob/main/schema/v1.ts"
 }

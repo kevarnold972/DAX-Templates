@@ -1,5 +1,5 @@
 {
-    "templateName": "Sales PM",
+    "templateName": "Fact YTD",
     "parameters": [
         {
             "parameterKey": "__PShowValueForDates",
@@ -34,18 +34,9 @@
                 "string"
             ],
             "displayName": "MeasureName",
-            "defaultValue": "Sales PM",
+            "defaultValue": "Sales YTD",
             "description": "Measure Name",
             "selectionKind": "userInput"
-        },
-        {
-            "parameterKey": "__DateWithSales",
-            "dataType": [
-                "true / false"
-            ],
-            "displayName": "DateWithSales",
-            "defaultValue": "'Date'[DateWithSales]",
-            "selectionKind": "table[Column]"
         }
     ],
     "encoding": [
@@ -57,27 +48,27 @@
             },
             "objectType": "measure",
             "name": "__PMeasureName",
-            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        CALCULATETABLE (\n            DATEADD ( __PDateColumn, -1, MONTH),\n            __DateWithSales = TRUE\n        )\n    )\n)",
-            "description": "Sales PM to guarantee a fair comparison of the last period with data",
+            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        DATESYTD ( __PDateColumn  )\n    )\n)",
+            "description": "The YTD total up the the last date with Sales",
             "folder": "",
-            "hidden": "false"
+            "hidden": "true"
         }
     ],
     "tags": [
         "time"
     ],
     "authors": [
-        "SQL BI Alberto Ferrari and Marco Russo",
+        "SQL BI - Alberto Ferrari and Marco Russo",
         "Translated to template - Kevin Arnold"
     ],
     "instructions": [
         null
     ],
     "supportURLs": [
-        "https://www.daxpatterns.com/standard-time-related-calculations/"
+        "https://www.daxpatterns.com/standard-time-related-calculations/#code8"
     ],
-    "description": "uses DATEADD and filters Date[DateWithSales] to guarantee a fair comparison of the last period with data.",
+    "description": "returning a result only when the ShowValueForDates measure returns TRUE",
     "buildVersion": "v1.0.0",
-    "uniqueId": "e7268521-e3b7-4f97-bd7f-f41e45247532",
+    "uniqueId": "bee4c5c9-9023-473c-bec3-96e17aa77f38",
     "schemaVersion": "https://github.com/PowerBI-tips/DAX-Templates/blob/main/schema/v1.ts"
 }

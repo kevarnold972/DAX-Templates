@@ -1,5 +1,5 @@
 {
-    "templateName": "Sales PQ",
+    "templateName": "Fact PY",
     "parameters": [
         {
             "parameterKey": "__PShowValueForDates",
@@ -34,7 +34,7 @@
                 "string"
             ],
             "displayName": "MeasureName",
-            "defaultValue": "Sales PQ",
+            "defaultValue": "Sales PY",
             "description": "Measure Name",
             "selectionKind": "userInput"
         },
@@ -57,7 +57,7 @@
             },
             "objectType": "measure",
             "name": "__PMeasureName",
-            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        CALCULATETABLE (\n            DATEADD ( __PDateColumn, -1, QUARTER),\n            __DateWithSales = TRUE\n        )\n    )\n)",
+            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        CALCULATETABLE (\n            DATEADD ( __PDateColumn, -1, YEAR ),\n            __DateWithSales = TRUE\n        )\n    )\n)",
             "description": "Sales PY to guarantee a fair comparison of the last period with data",
             "folder": "",
             "hidden": "false"
@@ -74,10 +74,10 @@
         null
     ],
     "supportURLs": [
-        "https://www.daxpatterns.com/standard-time-related-calculations/"
+        "https://www.daxpatterns.com/standard-time-related-calculations/#code16"
     ],
     "description": "uses DATEADD and filters Date[DateWithSales] to guarantee a fair comparison of the last period with data.",
     "buildVersion": "v1.0.0",
-    "uniqueId": "4511e2b2-036f-4bd3-b196-7eaf8a386adb",
+    "uniqueId": "e4139759-565d-44a2-a2e7-28f7e32ed658",
     "schemaVersion": "https://github.com/PowerBI-tips/DAX-Templates/blob/main/schema/v1.ts"
 }

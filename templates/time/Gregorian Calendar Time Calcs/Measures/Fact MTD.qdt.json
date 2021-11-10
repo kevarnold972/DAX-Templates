@@ -1,5 +1,5 @@
 {
-    "templateName": "Sales YTD",
+    "templateName": "Fact MTD",
     "parameters": [
         {
             "parameterKey": "__PShowValueForDates",
@@ -34,7 +34,7 @@
                 "string"
             ],
             "displayName": "MeasureName",
-            "defaultValue": "Sales YTD",
+            "defaultValue": "Sales MTD",
             "description": "Measure Name",
             "selectionKind": "userInput"
         }
@@ -48,8 +48,8 @@
             },
             "objectType": "measure",
             "name": "__PMeasureName",
-            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        DATESYTD ( __PDateColumn  )\n    )\n)",
-            "description": "The YTD total up the the last date with Sales",
+            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        DATESMTD ( __PDateColumn  )\n    )\n)",
+            "description": "The MTD total up the the last date with Sales",
             "folder": "",
             "hidden": "true"
         }
@@ -58,17 +58,17 @@
         "time"
     ],
     "authors": [
-        "SQL BI - Alberto Ferrari and Marco Russo",
+        "SQL BI Alberto Ferrari and Marco Russo",
         "Translated to template - Kevin Arnold"
     ],
     "instructions": [
         null
     ],
     "supportURLs": [
-        "https://www.daxpatterns.com/standard-time-related-calculations/"
+        "https://www.daxpatterns.com/standard-time-related-calculations/#code14"
     ],
-    "description": "returning a result only when the ShowValueForDates measure returns TRUE",
+    "description": "returning the Month to Date result only when the ShowValueForDates measure returns TRUE",
     "buildVersion": "v1.0.0",
-    "uniqueId": "bee4c5c9-9023-473c-bec3-96e17aa77f38",
+    "uniqueId": "c1c0f10e-414d-412d-8638-0ba0a1e04a76",
     "schemaVersion": "https://github.com/PowerBI-tips/DAX-Templates/blob/main/schema/v1.ts"
 }

@@ -1,5 +1,5 @@
 {
-    "templateName": "Sales QTD",
+    "templateName": "Fact PM",
     "parameters": [
         {
             "parameterKey": "__PShowValueForDates",
@@ -34,9 +34,18 @@
                 "string"
             ],
             "displayName": "MeasureName",
-            "defaultValue": "Sales QTD",
+            "defaultValue": "Sales PM",
             "description": "Measure Name",
             "selectionKind": "userInput"
+        },
+        {
+            "parameterKey": "__DateWithSales",
+            "dataType": [
+                "true / false"
+            ],
+            "displayName": "DateWithSales",
+            "defaultValue": "'Date'[DateWithSales]",
+            "selectionKind": "table[Column]"
         }
     ],
     "encoding": [
@@ -48,8 +57,8 @@
             },
             "objectType": "measure",
             "name": "__PMeasureName",
-            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        DATESQTD ( __PDateColumn  )\n    )\n)",
-            "description": "The QTD total up the the last date with Sales",
+            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        CALCULATETABLE (\n            DATEADD ( __PDateColumn, -1, MONTH),\n            __DateWithSales = TRUE\n        )\n    )\n)",
+            "description": "Sales PM to guarantee a fair comparison of the last period with data",
             "folder": "",
             "hidden": "false"
         }
@@ -65,10 +74,10 @@
         null
     ],
     "supportURLs": [
-        "https://www.daxpatterns.com/standard-time-related-calculations/"
+        "https://www.daxpatterns.com/standard-time-related-calculations/#code23"
     ],
-    "description": "returning the Quarter to Date result only when the ShowValueForDates measure returns TRUE",
+    "description": "uses DATEADD and filters Date[DateWithSales] to guarantee a fair comparison of the last period with data.",
     "buildVersion": "v1.0.0",
-    "uniqueId": "f4aa8ae0-1b3a-4b5d-b5ea-d762baf215df",
+    "uniqueId": "e7268521-e3b7-4f97-bd7f-f41e45247532",
     "schemaVersion": "https://github.com/PowerBI-tips/DAX-Templates/blob/main/schema/v1.ts"
 }

@@ -1,5 +1,5 @@
 {
-    "templateName": "Sales PY",
+    "templateName": "Fact Fiscal YTD",
     "parameters": [
         {
             "parameterKey": "__PShowValueForDates",
@@ -34,18 +34,18 @@
                 "string"
             ],
             "displayName": "MeasureName",
-            "defaultValue": "Sales PY",
+            "defaultValue": "Sales Fiscal YTD",
             "description": "Measure Name",
             "selectionKind": "userInput"
         },
         {
-            "parameterKey": "__DateWithSales",
+            "parameterKey": "__FiscalMonthDay",
             "dataType": [
-                "true / false"
+                "string"
             ],
-            "displayName": "DateWithSales",
-            "defaultValue": "'Date'[DateWithSales]",
-            "selectionKind": "table[Column]"
+            "displayName": "FiscalMonthDay",
+            "description": "the last day of the fiscal year as the month number and day. Example 6-30",
+            "selectionKind": "userInput"
         }
     ],
     "encoding": [
@@ -57,8 +57,8 @@
             },
             "objectType": "measure",
             "name": "__PMeasureName",
-            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        CALCULATETABLE (\n            DATEADD ( __PDateColumn, -1, YEAR ),\n            __DateWithSales = TRUE\n        )\n    )\n)",
-            "description": "Sales PY to guarantee a fair comparison of the last period with data",
+            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        DATESYTD ( __PDateColumn, \"__FiscalMonthDay\"  )\n    )\n)",
+            "description": "The Fiscal YTD total up the the last date with Sales",
             "folder": "",
             "hidden": "false"
         }
@@ -74,10 +74,10 @@
         null
     ],
     "supportURLs": [
-        "https://www.daxpatterns.com/standard-time-related-calculations/"
+        "https://www.daxpatterns.com/standard-time-related-calculations/#code9"
     ],
-    "description": "uses DATEADD and filters Date[DateWithSales] to guarantee a fair comparison of the last period with data.",
+    "description": "returning a Fiscal YTD result only when the ShowValueForDates measure returns TRUE",
     "buildVersion": "v1.0.0",
-    "uniqueId": "e4139759-565d-44a2-a2e7-28f7e32ed658",
+    "uniqueId": "1e5973d5-2c58-4fdc-8cf5-297ef6794e65",
     "schemaVersion": "https://github.com/PowerBI-tips/DAX-Templates/blob/main/schema/v1.ts"
 }

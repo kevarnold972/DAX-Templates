@@ -1,5 +1,5 @@
 {
-    "templateName": "Sales MTD",
+    "templateName": "Fact QTD",
     "parameters": [
         {
             "parameterKey": "__PShowValueForDates",
@@ -34,7 +34,7 @@
                 "string"
             ],
             "displayName": "MeasureName",
-            "defaultValue": "Sales MTD",
+            "defaultValue": "Sales QTD",
             "description": "Measure Name",
             "selectionKind": "userInput"
         }
@@ -48,10 +48,10 @@
             },
             "objectType": "measure",
             "name": "__PMeasureName",
-            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        DATESMTD ( __PDateColumn  )\n    )\n)",
-            "description": "The MTD total up the the last date with Sales",
+            "expression": "=\nIF (\n    [__PShowValueForDates],\n    CALCULATE (\n        __PReturnMeasure,\n        DATESQTD ( __PDateColumn  )\n    )\n)",
+            "description": "The QTD total up the the last date with Sales",
             "folder": "",
-            "hidden": "true"
+            "hidden": "false"
         }
     ],
     "tags": [
@@ -65,10 +65,10 @@
         null
     ],
     "supportURLs": [
-        "https://www.daxpatterns.com/standard-time-related-calculations/"
+        "https://www.daxpatterns.com/standard-time-related-calculations/#code12"
     ],
-    "description": "returning the Month to Date result only when the ShowValueForDates measure returns TRUE",
+    "description": "returning the Quarter to Date result only when the ShowValueForDates measure returns TRUE",
     "buildVersion": "v1.0.0",
-    "uniqueId": "c1c0f10e-414d-412d-8638-0ba0a1e04a76",
+    "uniqueId": "f4aa8ae0-1b3a-4b5d-b5ea-d762baf215df",
     "schemaVersion": "https://github.com/PowerBI-tips/DAX-Templates/blob/main/schema/v1.ts"
 }
