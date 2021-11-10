@@ -13,10 +13,9 @@ $TemplatesDirs = Get-ChildItem -Path $TemplateDir -Recurse | Where-Object {$_.PS
 foreach ($d in $TemplatesDirs){
 
     $CurrentDir = $d.FullName
-    $ReadmeFile = $CurrentDir + '\Readme.md'
     $Templates = Get-ChildItem -Path $CurrentDir -Filter *.qdt.json
 
-    "# Templates in the Directory" | Out-File   -FilePath $ReadmeFile 
+
 
     foreach ( $t in $Templates) {
         $c = Get-Content $t.FullName | Out-String | ConvertFrom-Json
