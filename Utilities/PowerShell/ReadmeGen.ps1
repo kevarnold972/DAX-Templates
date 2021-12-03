@@ -28,11 +28,10 @@ Write-Output $TemplateDir
 Write-Output $TemplatesDirs
 Write-Output $TemplateReadMe
 
-@"
-# Overall Templates
-Welcome, below is the documentation for all the templates in this repository. You will find a
-README file in each sub-folder as well.  
-"@ | Out-File -FilePath $TemplateReadMe
+
+"# Overall Templates" | Out-File -FilePath $TemplateReadMe
+"Welcome, below is the documentation for all the templates in this repository. You will find a README file in each sub-folder as well." | Out-File -FilePath $TemplateReadMe
+
 
 foreach ($d in $TemplatesDirs){
 
@@ -42,20 +41,27 @@ foreach ($d in $TemplatesDirs){
 
     "# Templates in the Directory" | Out-File   -FilePath $ReadmeFile 
 
-    "## Templates in: " + $d.Name | Out-File -FilePath $TemplateReadMe
+    $n = $d.FullName.Replace($TemplateDir,'')
+    "## Templates in: " + $n | Out-File -FilePath $TemplateReadMe
 
     foreach ( $t in $Templates) {
         $c = Get-Content $t.FullName | Out-String | ConvertFrom-Json
     # Directory Level README
-        '## ' + $c.templateName  | Out-File -FilePath $ReadmeFile  -Append
-        '### File '              | Out-File -FilePath $ReadmeFile  -Append
-        $t.Name                  | Out-File -FilePath $ReadmeFile  -Append
-        '### Description'        | Out-File -FilePath $ReadmeFile  -Append
-        $c.description           | Out-File -FilePath $ReadmeFile  -Append
-        '### Support Links'      | Out-File -FilePath $ReadmeFile  -Append
-        $c.supportURLs           | Out-File -FilePath $ReadmeFile  -Append
-        '### Authors'            | Out-File -FilePath $ReadmeFile  -Append
-        $c.authors               | Out-File -FilePath $ReadmeFile  -Append
+        '## ' + $c.templateName             | Out-File -FilePath $ReadmeFile  -Append
+        '### File '                         | Out-File -FilePath $ReadmeFile  -Append 
+        $t.Name                             | Out-File -FilePath $ReadmeFile  -Append
+        '### Description'                   | Out-File -FilePath $ReadmeFile  -Append
+        $c.description                      | Out-File -FilePath $ReadmeFile  -Append
+        '### Support Links'                 | Out-File -FilePath $ReadmeFile  -Append
+        foreach ($l in  $c.supportURLs ) {
+            "- " + $l           | Out-File -FilePath $ReadmeFile  -Append
+        }
+        
+        '### Authors'                       | Out-File -FilePath $ReadmeFile  -Append
+        foreach ($a in $c.authors ) {
+            "- " + $a           | Out-File -FilePath $ReadmeFile  -Append
+        }
+        
     
     # Template Directory Level README
         '### ' + $c.templateName  | Out-File -FilePath $TemplateReadMe  -Append
@@ -64,8 +70,14 @@ foreach ($d in $TemplatesDirs){
         '#### Description'        | Out-File -FilePath $TemplateReadMe  -Append
         $c.description            | Out-File -FilePath $TemplateReadMe  -Append
         '#### Support Links'      | Out-File -FilePath $TemplateReadMe  -Append
-        $c.supportURLs            | Out-File -FilePath $TemplateReadMe  -Append
+        $links = $c.supportURLs.
+        $links | Out-File -FilePath $TemplateReadMe  -Append
+        foreach ($l in  $c.supportURLs ) {
+            "- " + $l           | Out-File -FilePath $TemplateReadMe  -Append
+        }
         '#### Authors'            | Out-File -FilePath $TemplateReadMe  -Append
-        $c.authors                | Out-File -FilePath $TemplateReadMe  -Append
+        foreach ($a in $c.authors ) {
+            "- " + $a           | Out-File -FilePath $TemplateReadMe  -Append
+        }
     }
 }
