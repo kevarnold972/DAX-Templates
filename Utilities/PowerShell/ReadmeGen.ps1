@@ -44,6 +44,8 @@ foreach ($d in $TemplatesDirs){
         $c.description  | Out-File -FilePath $ReadmeFile  -Append
         '### Support Links' | Out-File -FilePath $ReadmeFile  -Append
         $c.supportURLs  | Out-File -FilePath $ReadmeFile  -Append
+        '### Authors' | Out-File -FilePath $ReadmeFile  -Append
+        $c.authors | Out-File -FilePath $ReadmeFile  -Append
         
     }
 }
