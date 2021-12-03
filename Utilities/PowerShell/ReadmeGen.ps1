@@ -30,7 +30,7 @@ Write-Output $TemplateReadMe
 
 
 "# Overall Templates" | Out-File -FilePath $TemplateReadMe
-"Welcome, below is the documentation for all the templates in this repository. You will find a README file in each sub-folder as well." | Out-File -FilePath $TemplateReadMe
+"Welcome, below is the documentation for all the templates in this repository. You will find a README file in each sub-folder as well." | Out-File -FilePath $TemplateReadMe -Append
 
 
 foreach ($d in $TemplatesDirs){
@@ -42,7 +42,7 @@ foreach ($d in $TemplatesDirs){
     "# Templates in the Directory" | Out-File   -FilePath $ReadmeFile 
 
     $n = $d.FullName.Replace($TemplateDir,'')
-    "## Templates in: " + $n | Out-File -FilePath $TemplateReadMe
+    "## Templates in: " + $n | Out-File -FilePath $TemplateReadMe -Append
 
     foreach ( $t in $Templates) {
         $c = Get-Content $t.FullName | Out-String | ConvertFrom-Json
